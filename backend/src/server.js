@@ -40,6 +40,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// 🔍 DEBUG: Log imported routes
+console.log('=== ROUTE IMPORTS DEBUG ===');
+console.log('Auth routes:', authRoutes);
+console.log('Product routes:', productRoutes);
+console.log('Order routes:', orderRoutes);
+console.log('=========================');
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
@@ -56,6 +63,7 @@ app.get('/api/health', (req, res) => {
 
 // 404 handler
 app.use((req, res) => {
+  console.log('404 - Route not found:', req.method, req.url);
   res.status(404).json({
     success: false,
     message: 'Route not found',
